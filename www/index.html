@@ -30,17 +30,17 @@
             <h1>Choisissez une conversion :</h1>
             <div class="accueil">
               <br>
-              <button class="button button--large" onclick="myNavigator.pushPage('stereVolume', { animation : 'slide' } )">
+              <button class="button button--large" ng-click="myNavigator.pushPage('stereVolume', { animation : 'slide' } )">
                 stere -> volume
               </button>
               <br>
               <br>
-              <button class="button button--large" onclick="myNavigator.pushPage('bucherStere', { animation : 'slide' } )">
+              <button class="button button--large" ng-click="myNavigator.pushPage('bucherStere', { animation : 'slide' } )">
                 dimensions du bucher -> stere
               </button>
               <br>
               <br>
-              <button class="button button--large" onclick="myNavigator.pushPage('volumeStere', { animation : 'slide' } )">
+              <button class="button button--large" ng-click="myNavigator.pushPage('volumeStere', { animation : 'slide' } )">
                 volume -> stere
               </button>
             </div>
@@ -48,7 +48,7 @@
             <div class="tab-bar">
               <label class="tab-bar__item">
                 <!-- <input type="radio" name="tab-bar-a"> -->
-                <button class="tab-bar__button" onclick="myNavigator.pushPage('aide', { animation : 'slide' } )">
+                <button class="tab-bar__button" ng-click="myNavigator.pushPage('aide', { animation : 'slide' } )">
                   <i class="tab-bar__icon ion-help"></i>
                   <div class="tab-bar__label">Aide</div>
                 </button>
@@ -56,7 +56,7 @@
 
               <label class="tab-bar__item">
                 <!-- <input type="radio" name="tab-bar-a"> -->
-                <button class="tab-bar__button" onclick="myNavigator.pushPage('aPropos', { animation : 'slide' } )">
+                <button class="tab-bar__button" ng-click="myNavigator.pushPage('aPropos', { animation : 'slide' } )">
                   <i class="tab-bar__icon ion-information"></i>
                   <div class="tab-bar__label">Infos</div>
                 </button>
