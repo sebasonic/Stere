@@ -1,4 +1,4 @@
-var module = ons.bootstrap('my-app', ['onsen']);
+var module = ons.bootstrap('app', ['onsen']);
 
 var getCoeff = function(longueurBuche){
     var coeff = 1;
@@ -32,7 +32,12 @@ var getCoeff = function(longueurBuche){
     return coeff;
 }
 
-module.controller('AppController', function($scope) { });
+module.controller('AppController',function($scope, $window) {  
+    ons.ready(function() {
+        $scope.nav = $window.myNavigator
+        document.querySelector("#button1").onclick = function(){$scope.nav.pushPage('stereVolume', { animation : 'slide' } );}
+    });
+});
 
 // Stere ----->>>> volume
 module.controller('StereVolumeCtrl', function($scope) {
@@ -109,3 +114,4 @@ module.controller('AProposCtrl', function($scope) {
       // Init code here
     });
 });
+
