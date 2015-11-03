@@ -32,6 +32,11 @@ var getCoeff = function(longueurBuche){
     return coeff;
 }
 
+function openExternal(elem) {
+    window.open(elem.href, "_system");
+    return false; // Prevent execution of the default onClick handler 
+}
+
 module.controller('AppController',function($scope, $window) {  
     ons.ready(function() {
         $scope.nav = $window.myNavigator

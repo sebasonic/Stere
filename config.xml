@@ -19,6 +19,7 @@
     <!-- Allow links to web pages to open in a browser -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <gap:plugin name="org.li8.inappbrowser" version="0.1" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
