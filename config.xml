@@ -16,6 +16,12 @@
     <!-- Allow links to web pages to open in a browser -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+
+
+<preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+
+
     <gap:plugin name="org.apache.cordova.inappbrowser" source="pgb" version="0.6.0" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
 
@@ -38,7 +44,6 @@
 
 
 
-    <preference name="SplashScreen" value="splash" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
