@@ -34,7 +34,7 @@ var getCoeff = function(longueurBuche){
 
 function openExternal(elem) {
     alert("lala");
-    window.open(elem.href, "_system");
+    window.open(elem, "_system");
     return false; // Prevent execution of the default onClick handler 
 }
 
