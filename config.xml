@@ -17,6 +17,8 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <gap:plugin name="org.apache.cordova.inappbrowser" source="pgb" version="0.6.0" />
+    <preference name="SplashScreen" value="splash.png" />
+<preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -28,5 +30,5 @@
     <preference name="permissions" value="none"/>
     <preference name="orientation" value="portrait" />
     <icon src="icon.png" />
-<gap:splash src="splash.png" />
+<!-- <gap:splash src="splash.png" /> -->
 </widget>
