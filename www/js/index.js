@@ -33,8 +33,7 @@ var getCoeff = function(longueurBuche){
 }
 
 function openExternal(elem) {
-    alert("lala");
-    window.open(elem, "_system");
+    window.open("http://barnsonic.com", "_system");
     return false; // Prevent execution of the default onClick handler 
 }
 
