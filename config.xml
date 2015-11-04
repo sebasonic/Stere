@@ -31,5 +31,5 @@
     <preference name="permissions" value="none"/>
     <preference name="orientation" value="portrait" />
     <icon src="icon.png" />
-<!-- <gap:splash src="splash.png" /> -->
+<gap:splash src="splash.png" />
 </widget>
