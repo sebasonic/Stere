@@ -4,16 +4,6 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/onsenui.css"/>
         <link rel="stylesheet" href="css/onsen-css-components.css"/>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-        * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -24,9 +14,6 @@
     <body ng-controller="AppController">
         <ons-navigator title="Navigator" var="myNavigator">
           <ons-page>
-            <!-- <ons-toolbar>
-              <div class="center">Conversion :</div>
-            </ons-toolbar> -->
             <h1>Choisissez une conversion :</h1>
             <div class="accueil">
               <br>
@@ -47,7 +34,6 @@
 
             <div class="tab-bar">
               <label class="tab-bar__item">
-                <!-- <input type="radio" name="tab-bar-a"> -->
                 <button class="tab-bar__button" ng-click="myNavigator.pushPage('aide', { animation : 'slide' } )">
                   <i class="tab-bar__icon ion-help"></i>
                   <div class="tab-bar__label">Aide</div>
@@ -55,20 +41,11 @@
               </label>
 
               <label class="tab-bar__item">
-                <!-- <input type="radio" name="tab-bar-a"> -->
                 <button class="tab-bar__button" ng-click="myNavigator.pushPage('aPropos', { animation : 'slide' } )">
                   <i class="tab-bar__icon ion-information"></i>
                   <div class="tab-bar__label">Infos</div>
                 </button>
               </label>
-
-             <!--  <label class="tab-bar__item">
-                <input type="radio" name="tab-bar-a">
-                <button class="tab-bar__button">
-                  <i class="tab-bar__icon ion-settings"></i>
-                  <div class="tab-bar__label">Reglages</div>
-                </button>
-              </label> -->
             </div>
 
           </ons-page>
@@ -104,8 +81,6 @@
             </div>
           </ons-page>
         </ons-template>
-
-
 
         <ons-template id="bucherStere">
           <ons-page ng-controller="BucherStereCtrl">
@@ -147,9 +122,6 @@
             </div>
           </ons-page>
         </ons-template>
-
-
-
         <ons-template id="volumeStere">
           <ons-page ng-controller="VolumeStereCtrl">
             <ons-toolbar>
@@ -159,7 +131,6 @@
             </ons-toolbar>
             <h3 class="center">Conversion volume -> stère</h3>
             <p class="content-pad">Entrez le volume de bois (en mètre cube) puis la longueur des bûches (en centimètres), et cliquez sur <i>conversion</i> pour obtenir le volume en stère</p>
-
             <div ng-form name="volumeStereForm" style="text-align: center" >
                 <br>Volume du bucher (m&sup3;) :
                 <br><input name="volumeInput" type="number" step="0.01" min="0.01" max="99" class="text-input" ng-model="volume" required />
@@ -179,9 +150,6 @@
             </div>
           </ons-page>
         </ons-template>
-
-
-
         <ons-template id="aide">
           <ons-page ng-controller="AideCtrl">
             <ons-toolbar>
@@ -209,14 +177,11 @@
 
 
                 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr" onClick="openExternal(this.href)">Contenu soumis à la licence CC-BY-SA</a>. 
-                <br><p>Source : Article <em><a href="http://fr.wikipedia.org/wiki/St%C3%A8re" target="_blank">Stère</a></em> de <a href="http://fr.wikipedia.org/" target="_blank">Wikipédia en français</a>(<a href="http://fr.wikipedia.org/w/index.php?title=St%C3%A8re&action=history" target="_blank">auteurs</a>)</p>
+                <br><p>Source : Article <em><a href="http://fr.wikipedia.org/wiki/St%C3%A8re" onClick="openExternal(this.href)">Stère</a></em> de <a href="http://fr.wikipedia.org/" onClick="openExternal(this.href)">Wikipédia en français</a>(<a href="http://fr.wikipedia.org/w/index.php?title=St%C3%A8re&action=history" onClick="openExternal(this.href)">auteurs</a>)</p>
             </div>
 
           </ons-page>
         </ons-template>
-
-
-
         <ons-template id="aPropos">
           <ons-page ng-controller="AProposCtrl">
             <ons-toolbar>
@@ -232,7 +197,7 @@
                 Si vous n'avez pas calculé votre volume en mètre cube, mesurez votre buchez et entrez ses dimensions dans l'application (longueur, largeur, hauteur), la conversion se fera automatiquement.
                 </p>
                 <p>
-                    V1.0.1 - <a href="#" onclick="window.open('http://barnsonic.com', '_blank', 'location=yes'); return false;">http://barnsonic.com</a>
+                    V1.0.1 - <a href="http://barnsonic.com" onClick="openExternal(this.href)">http://barnsonic.com</a>
                 </p>
             </div>
           </ons-page>

@@ -20,13 +20,6 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <gap:plugin name="org.apache.cordova.inappbrowser"/>
-
-   <!--  <feature name="InAppBrowser">
-        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-        <param name="ios-package" value="CDVInAppBrowser" />
-    </feature> -->
-
-
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
