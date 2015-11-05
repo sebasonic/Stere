@@ -38,8 +38,8 @@
     </platform>
     <!-- <preference name="AutoHideSplashScreen" value="false" /> -->
     <preference name="permissions" value="none"/>
-    <preference name="orientation" value="portrait" />
+    <preference name="orientation" value="portrait" /><!-- 
     <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" /> -->
     <icon src="icon.png" />
 </widget>
