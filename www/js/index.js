@@ -1,5 +1,12 @@
 var module = ons.bootstrap('app', ['onsen']);
 
+ons.ready(function() {
+  // Hide Cordova splash screen when Onsen UI is loaded completely
+  // API reference: https://github.com/apache/cordova-plugin-splashscreen/blob/master/doc/index.md
+  // navigator.splashscreen.hide()
+
+});
+
 var getCoeff = function(longueurBuche){
     var coeff = 1;
     longueurBuche = Number(longueurBuche)/100;
