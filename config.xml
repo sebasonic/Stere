@@ -18,7 +18,7 @@
     <allow-intent href="https://*/*" />
     <gap:plugin name="org.apache.cordova.inappbrowser" source="pgb" version="0.6.0" />
     <gap:plugin name="org.apache.cordova.splashscreen" source="pgb" version="1.0.0" />
-    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />
+ <!--    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="www/res/screen/android/screen-mdpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="www/res/screen/android/screen-hdpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="www/res/screen/android/screen-xhdpi-portrait.png" />
@@ -28,7 +28,7 @@
     <gap:splash gap:platform="ios" height="1136" src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
     <gap:splash gap:platform="ios" height="1024" src="www/res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
-    <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
+    <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" /> -->
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -38,7 +38,12 @@
     </platform>
     <!-- <preference name="AutoHideSplashScreen" value="false" /> -->
     <preference name="permissions" value="none"/>
-    <preference name="orientation" value="portrait" /><!-- 
+    <preference name="orientation" value="portrait" />
+<preference name="SplashScreen" value="splash" />
+<preference name="SplashScreenDelay" value="3000" />
+<preference name="AutoHideSplashScreen" value="false" />
+<preference name="SplashMaintainAspectRatio" value="true" />
+    <!-- 
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" /> -->
     <icon src="icon.png" />
