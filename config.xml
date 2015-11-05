@@ -16,19 +16,9 @@
     <!-- Allow links to web pages to open in a browser -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-
-
-<preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="true" />
-
-
     <gap:plugin name="org.apache.cordova.inappbrowser" source="pgb" version="0.6.0" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
-
-
-
-
-<gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="www/res/screen/android/screen-mdpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="www/res/screen/android/screen-hdpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="www/res/screen/android/screen-xhdpi-portrait.png" />
@@ -39,11 +29,6 @@
     <gap:splash gap:platform="ios" height="1024" src="www/res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
-    <gap:splash src="splash.png" />
-
-
-
-
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -54,6 +39,7 @@
     <!-- <preference name="AutoHideSplashScreen" value="false" /> -->
     <preference name="permissions" value="none"/>
     <preference name="orientation" value="portrait" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
     <icon src="icon.png" />
-<!-- <gap:splash src="splash.png" /> -->
 </widget>
