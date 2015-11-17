@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.barnsonic.stere" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.barnsonic.stere" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Stere</name>
   <description>
       Application de conversion stère/mètre cube
@@ -19,10 +19,9 @@
   <preference name="orientation" value="portrait"/>
   <preference name="permissions" value="none"/>
 
-<!--   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
-<!-- <gap:plugin name="org.apache.cordova.inappbrowser" /> -->
-
+  <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" />
+  
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
