@@ -21,7 +21,7 @@
 
 <!--   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
   <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
-<gap:plugin name="org.apache.cordova.inappbrowser" />
+<!-- <gap:plugin name="org.apache.cordova.inappbrowser" /> -->
 
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
