@@ -9,9 +9,6 @@
   </author>
   <content src="index.html"/>
   <access origin="*"/>
-<!--   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
-<gap:plugin name="org.li8.inappbrowser" version="0.1" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -21,6 +18,11 @@
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="orientation" value="portrait"/>
   <preference name="permissions" value="none"/>
+
+<!--   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
+<gap:plugin name="org.apache.cordova.inappbrowser" />
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
