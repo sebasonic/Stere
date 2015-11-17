@@ -1,211 +1,228 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="css/onsenui.css"/>
-        <link rel="stylesheet" href="css/onsen-css-components.css"/>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Stere</title>
-    </head>
-    <body ng-controller="AppController">
-        <ons-navigator title="Navigator" var="myNavigator">
-          <ons-page>
-            <h1>Choisissez une conversion :</h1>
-            <div class="accueil">
-              <br>
-              <button class="button button--large" id="button1">
-                stere -> volume
-              </button>
-              <br>
-              <br>
-              <button class="button button--large" ng-click="myNavigator.pushPage('bucherStere', { animation : 'slide' } )">
-                dimensions du bucher -> stere
-              </button>
-              <br>
-              <br>
-              <button class="button button--large" ng-click="myNavigator.pushPage('volumeStere', { animation : 'slide' } )">
-                volume -> stere
-              </button>
-            </div>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
 
-            <div class="tab-bar">
-              <label class="tab-bar__item">
-                <button class="tab-bar__button" ng-click="myNavigator.pushPage('aide', { animation : 'slide' } )">
-                  <i class="tab-bar__icon ion-help"></i>
-                  <div class="tab-bar__label">Aide</div>
-                </button>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/angular-messages.min.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+    <ion-nav-bar class="bar-positive nav-title-slide-ios7" align-title="center">
+      <ion-nav-back-button class="button-icon ion-arrow-left-c">
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-nav-view class="slide-left-right"></ion-nav-view>
+
+    <script id="templates/tabs.html" type="text/ng-template">
+      <ion-tabs ng-class="{'tabs-item-hide': $root.hideTabs}" class="tabs-icon-top tabs-positive">
+        <ion-tab title="Accueil" icon="ion-ios-home-outline" href="#/tab/home">
+          <ion-nav-view name="home-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="Aide" icon="ion-ios-help-outline" href="#/tab/help">
+          <ion-nav-view name="help-tab"></ion-nav-view>
+        </ion-tab>
+        <ion-tab title="A propos" icon="ion-ios-information-outline" href="#/tab/about">
+          <ion-nav-view name="about-tab"></ion-nav-view>
+        </ion-tab>
+      </ion-tabs>
+    </script>
+
+    <script id="templates/home.html" type="text/ng-template">
+      <ion-view view-title="Accueil"  hide-tabs='false'>
+        <ion-content class="center">
+          <h1>Choisissez une conversion :</h1>
+          <div>
+            <br>
+            <a class="button button-block" href="#/tab/stereVolume">stere <i class="ion-arrow-right-c"></i> volume</a>
+            <br>
+            <a class="button button-block" href="#/tab/bucherStere">dimensions du tas <i class="ion-arrow-right-c"></i> stere</a>
+            <br>
+            <a class="button button-block" href="#/tab/volumeStere">volume <i class="ion-arrow-right-c"></i> stere</a>
+          </div>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="templates/stereVolume.html" type="text/ng-template">
+      <ion-view view-title='st <i class="ion-arrow-right-c"></i> m&sup3;' hide-tabs='true'>
+        <ion-content class="center">
+        <h3>Conversion stère <i class="ion-arrow-right-c"></i> mètre cube</h3>
+        <p>Entrez votre volume de bois (en stère) puis la longueur des bûches (en centimètres), et cliquez sur <i>conversion</i> pour obtenir le volume en mètre cube</p><br>
+        <form name="stereVolumeForm" novalidate="" ng-submit="getVolume(stereVolumeForm, data)" >
+          <div class="list">
+            <label class="item item-input" ng-class="{ error: showValidationMessages && !stereVolumeForm.stereInput.$valid }" >
+            <input name="stereInput" type="number" step="0.01" min="0.01" max="99.99" ng-model="data.stere" required="" placeholder="Volume de bois (st)">
+            </label>
+            <div class="error-msg" ng-show="showValidationMessages && !stereVolumeForm.stereInput.$valid">
+              <i class="ion-information-circled">&nbsp</i> 
+              <span ng-show="stereVolumeForm.stereInput.$error.required">Indiquez le sterage</span>
+              <span ng-show="stereVolumeForm.stereInput.$error.number">Le sterage doit être un chiffre</span>
+              <span ng-show="stereVolumeForm.stereInput.$error.min">Le sterage doit être superieur à 0</span>
+              <span ng-show="stereVolumeForm.stereInput.$error.max">Le sterage doit être inferieur à 100</span>
+            </div>
+            <label class="item item-input" ng-class="{ error: showValidationMessages && !stereVolumeForm.longBucheInput.$valid }">
+              <input name="longBucheInput" type="number" step="1" min="20" max="100" ng-model="data.longbuche" required="" placeholder="Longueur des bûches (cm)">
+            </label>
+            <div class="error-msg" ng-show="showValidationMessages && !stereVolumeForm.longBucheInput.$valid">
+              <i class="ion-information-circled">&nbsp</i> 
+              <span ng-show="stereVolumeForm.longBucheInput.$error.required">Indiquez la longueur des bûches</span>
+              <span ng-show="stereVolumeForm.longBucheInput.$error.number">La longueur des bûches doit être un chiffre</span>
+              <span ng-show="stereVolumeForm.longBucheInput.$error.min">La longueur des bûches doit être de 20 cm au minimum</span>
+              <span ng-show="stereVolumeForm.longBucheInput.$error.max">La longueur des bûches doit être de 1 mètres au maximum</span>
+            </div>
+          </div>
+          <button type="submit" class="button btn-convert" ng-disabled="longtas.$dirty || longtas.$invalid">conversion</button>
+        </form>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="templates/bucherStere.html" type="text/ng-template">
+      <ion-view view-title='Lxlxh <i class="ion-arrow-right-c"></i> st' hide-tabs='true'>
+        <ion-content class="center">
+          <h3>Conversion dimensions <i class="ion-arrow-right-c"></i> stère</h3>
+          <p>Entrez les dimensions de votre tas de bois (Longueur, largeur, hauteur en mètre) puis la longueur des bûches (en centimètres), et cliquez sur <i>conversion</i> pour obtenir son volume en stère</p>
+          <p>Attention, pour que la conversion soit exacte, votre bois doit être empilé (toutes les bûches dans le même sens) avant de mesurer ses dimensions.</p><br>
+          <form name="bucherStereForm" novalidate="" ng-submit="getStere(bucherStereForm, data)" >
+          <div class="list">
+            <label class="item item-input" ng-class="{ error: showValidationMessages && !bucherStereForm.longTasInput.$valid }" >
+            <input name="longTasInput" type="number" step="0.01" min="0.01" max="99" ng-model="data.longtas" required="" placeholder="Longueur (m)">
+            </label>
+            <div class="error-msg" ng-show="showValidationMessages && !bucherStereForm.longTasInput.$valid">
+              <i class="ion-information-circled">&nbsp</i> 
+              <span ng-show="bucherStereForm.longTasInput.$error.required">Indiquez la longueur</span>
+              <span ng-show="bucherStereForm.longTasInput.$error.number">La longueur doit être un chiffre</span>
+              <span ng-show="bucherStereForm.longTasInput.$error.min">La longueur doit être superieur à 0</span>
+              <span ng-show="bucherStereForm.longTasInput.$error.max">La longueur doit être inferieur à 100 mètres</span>
+            </div>
+            <label class="item item-input" ng-class="{ error: showValidationMessages && !bucherStereForm.largeTasInput.$valid }" >
+            <input name="largeTasInput" type="number" step="0.01" min="0.01" max="99" ng-model="data.largetas" required="" placeholder="Largeur (m)">
+            </label>
+            <div class="error-msg" ng-show="showValidationMessages && !bucherStereForm.largeTasInput.$valid">
+              <i class="ion-information-circled">&nbsp</i> 
+              <span ng-show="bucherStereForm.largeTasInput.$error.required">Indiquez la largeur</span>
+              <span ng-show="bucherStereForm.largeTasInput.$error.number">La longueur doit être un chiffre</span>
+              <span ng-show="bucherStereForm.largeTasInput.$error.min">La longueur doit être superieur à 0</span>
+              <span ng-show="bucherStereForm.largeTasInput.$error.max">La longueur doit être inferieur à 100 mètres</span>
+            </div>
+            <label class="item item-input" ng-class="{ error: showValidationMessages && !bucherStereForm.hautTasInput.$valid }" >
+            <input name="hautTasInput" type="number" step="0.01" min="0.01" max="99" ng-model="data.hauttas" required="" placeholder="Hauteur (m)">
+            </label>
+            <div class="error-msg" ng-show="showValidationMessages && !bucherStereForm.hautTasInput.$valid">
+              <i class="ion-information-circled">&nbsp</i> 
+              <span ng-show="bucherStereForm.hautTasInput.$error.required">Indiquez la hauteur</span>
+              <span ng-show="bucherStereForm.hautTasInput.$error.number">La hauteur doit être un chiffre</span>
+              <span ng-show="bucherStereForm.hautTasInput.$error.min">La hauteur doit être superieur à 0</span>
+              <span ng-show="bucherStereForm.hautTasInput.$error.max">La hauteur doit être inferieur à 100 mètres</span>
+            </div>
+            <label class="item item-input" ng-class="{ error: showValidationMessages && !bucherStereForm.longBucheInput.$valid }" >
+            <input name="longBucheInput" type="number" step="1" min="20" max="100" ng-model="data.longbuche" required="" placeholder="Longueur des bûches (cm)">
+            </label>
+            <div class="error-msg" ng-show="showValidationMessages && !bucherStereForm.longBucheInput.$valid">
+              <i class="ion-information-circled">&nbsp</i> 
+              <span ng-show="bucherStereForm.longBucheInput.$error.required">Indiquez la longueur des bûches</span>
+              <span ng-show="bucherStereForm.longBucheInput.$error.number">La longueur des bûches doit être un chiffre</span>
+              <span ng-show="bucherStereForm.longBucheInput.$error.min">La longueur des bûches doit être de 20 cm au minimum</span>
+              <span ng-show="bucherStereForm.longBucheInput.$error.max">La longueur des bûches doit être de 1 mètre au maximum</span>
+            </div>
+          </div>
+          <button type="submit" class="button btn-convert" ng-disabled="longtas.$dirty || longtas.$invalid">conversion</button>
+          </form>
+        </ion-content>
+      </ion-view>
+    </script>
+
+    <script id="templates/volumeStere.html" type="text/ng-template">
+      <ion-view view-title='m&sup3 <i class="ion-arrow-right-c"></i> st' hide-tabs='true'>
+        <ion-content class="center">
+          <h3>Conversion volume <i class="ion-arrow-right-c"></i> stère</h3>
+          <p>Entrez le volume de bois (m&sup3) puis la longueur des bûches (cm), et cliquez sur <i>conversion</i> pour obtenir le volume en stère</p>
+          <p>Attention, pour que la conversion soit exacte, votre bois doit être empilé (toutes les bûches dans le même sens) avant de mesurer le volume en m&sup3;.</p><br>
+          <form name="volumeStereForm" novalidate="" ng-submit="getStere(volumeStereForm, data)" >
+            <div class="list">  
+              <label class="item item-input" ng-class="{ error: showValidationMessages && !volumeStereForm.volumeInput.$valid }" >
+              <input name="volumeInput" type="number" step="0.01" min="0.01" max="99" ng-model="data.volume" required="" placeholder="Volume de bois (m&sup3;)">
               </label>
-
-              <label class="tab-bar__item">
-                <button class="tab-bar__button" ng-click="myNavigator.pushPage('aPropos', { animation : 'slide' } )">
-                  <i class="tab-bar__icon ion-information"></i>
-                  <div class="tab-bar__label">Infos</div>
-                </button>
+              <div class="error-msg" ng-show="showValidationMessages && !volumeStereForm.volumeInput.$valid">
+                <i class="ion-information-circled">&nbsp</i> 
+                <span ng-show="volumeStereForm.volumeInput.$error.required">Indiquez le volume</span>
+                <span ng-show="volumeStereForm.volumeInput.$error.number">Le volume doit être un chiffre</span>
+                <span ng-show="volumeStereForm.volumeInput.$error.min">Le volume doit être superieur à 0</span>
+                <span ng-show="volumeStereForm.volumeInput.$error.max">Le volume doit être inferieur à 100 mètres</span>
+              </div>
+              <label class="item item-input" ng-class="{ error: showValidationMessages && !volumeStereForm.longBucheInput.$valid }" >
+              <input name="longBucheInput" type="number" step="1" min="20" max="100" ng-model="data.longbuche" required="" placeholder="Longueur des bûches (cm)">
               </label>
-            </div>
-
-          </ons-page>
-          
-        </ons-navigator>
-
-        <ons-template id="stereVolume">
-          <ons-page ng-controller="StereVolumeCtrl">
-            <ons-toolbar>
-              <div class="left">
-                <ons-back-button>Retour</ons-back-button>
+              <div class="error-msg" ng-show="showValidationMessages && !volumeStereForm.longBucheInput.$valid">
+                <i class="ion-information-circled">&nbsp</i> 
+                <span ng-show="volumeStereForm.longBucheInput.$error.required">Indiquez la longueur des bûches</span>
+                <span ng-show="volumeStereForm.longBucheInput.$error.number">La longueur des bûches doit être un chiffre</span>
+                <span ng-show="volumeStereForm.longBucheInput.$error.min">La longueur des bûches doit être de 20 cm au minimum</span>
+                <span ng-show="volumeStereForm.longBucheInput.$error.max">La longueur des bûches doit être de 1 mètre au maximum</span>
               </div>
-            </ons-toolbar>
-              <h3 class="center">Conversion stère -> volume</h3>
-              <p class="content-pad">Entrez le volume de bois (en stère) puis la longueur des bûches (en centimètres), et cliquez sur <i>conversion</i> pour obtenir le volume en mètre cube</p>
-
-             <div ng-form name="stereVolumeForm" style="text-align: center" >
-                <br>Volume de bois (st) :
-                <br><input name="stereInput" type="number" step="0.01" min="0.01" max="99.99" class="text-input" ng-model="stere" required />
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.stereInput.$error.required"><br>Indiquez le sterage</span>
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.stereInput.$error.number"><br>Le sterage doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.stereInput.$error.min"><br>Le sterage doit être superieur à 0</span>
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.stereInput.$error.max"><br>Le sterage doit être inferieur à 100</span>
-                <br><br>Longueur des buches (cm) :
-                <br><input name="longBucheInput" type="number" step="1" min="20" max="100" class="text-input" ng-model="longbuche" required />
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.longBucheInput.$error.required"><br>Indiquez la longueur des bûches</span>
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.longBucheInput.$error.number"><br>La longueur des bûches doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.longBucheInput.$error.min"><br>La longueur des bûches doit être de 20 cm au minimum</span>
-                <span class="input-error" ng-show="showValidationMessages && stereVolumeForm.longBucheInput.$error.max"><br>La longueur des bûches doit être de 1 metres au maximum</span>
-                <br><br>
-                <button class="button" ng-click='getVolume()'>conversion</button>
-                <p ng-show="volume != ''">Volume de bois : {{volume}}m&sup3; en bûches de {{longbucheCtrl}}cm ({{stereCtrl}} st)</p>
             </div>
-          </ons-page>
-        </ons-template>
+            <button type="submit" class="button btn-convert" ng-disabled="longtas.$dirty || longtas.$invalid">conversion</button>
+          </form>
+        </ion-content>
+      </ion-view>
+    </script>
 
-        <ons-template id="bucherStere">
-          <ons-page ng-controller="BucherStereCtrl">
-            <ons-toolbar>
-              <div class="left">
-                <ons-back-button>Retour</ons-back-button>
-              </div>
-            </ons-toolbar>
-            <h3 class="center">Conversion dimensions -> stère</h3>
-            <p class="content-pad">Entrez les dimensions de votre bûcher (longueur, largeur, hauteur en mètre) puis la longueur des bûches (en centimètres), et cliquez sur <i>conversion</i> pour obtenir son volume en stère</p>
-            <div ng-form name="bucherStereForm" style="text-align: center" >
-                <br>Longueur (m) :
-                <br><input name="longTasInput" type="number" step="0.01" min="0.01" max="99" class="text-input" ng-model="longtas" required />
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longTasInput.$error.required"><br>Indiquez la longueur</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longTasInput.$error.number"><br>La longueur doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longTasInput.$error.min"><br>La longueur doit être superieur à 0</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longTasInput.$error.max"><br>La longueur doit être inferieur à 100 metres</span>
-                <br><br>Largeur (m) :
-                <br><input name="largeTasInput" type="number" step="0.01" min="0.01" max="99" class="text-input" ng-model="largetas" required />
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.largeTasInput.$error.required"><br>Indiquez la largeur</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.largeTasInput.$error.number"><br>La longueur doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.largeTasInput.$error.min"><br>La longueur doit être superieur à 0</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.largeTasInput.$error.max"><br>La longueur doit être inferieur à 100 metres</span>
-                <br><br>Hauteur (m) :
-                <br><input name="hautTasInput" type="number" step="0.01" min="0.01" max="99" class="text-input" ng-model="hauttas" required />
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.hautTasInput.$error.required"><br>Indiquez la hauteur</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.hautTasInput.$error.number"><br>La hauteur doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.hautTasInput.$error.min"><br>La hauteur doit être superieur à 0</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.hautTasInput.$error.max"><br>La hauteur doit être inferieur à 100 metres</span>
-                <br><br>Longueur des buches (cm) :
-                <br><input name="longBucheInput" type="number" step="1" min="20" max="100" class="text-input" ng-model="longbuche" required />
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longBucheInput.$error.required"><br>Indiquez la longueur des bûches</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longBucheInput.$error.number"><br>La longueur des bûches doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longBucheInput.$error.min"><br>La longueur des bûches doit être de 20 cm au minimum</span>
-                <span class="input-error" ng-show="showValidationMessages && bucherStereForm.longBucheInput.$error.max"><br>La longueur des bûches doit être de 1 metres au maximum</span>
-                <br><br>
-                <button class="button" ng-click='getStere()' ng-disabled="longtas.$dirty || longtas.$invalid">conversion</button>
-                <p ng-show="stere != ''">Volume de bois : {{stere}} st en bûches de {{longbucheCtrl}}cm ({{volume}}m&sup3;)</p>
-            </div>
-          </ons-page>
-        </ons-template>
-        <ons-template id="volumeStere">
-          <ons-page ng-controller="VolumeStereCtrl">
-            <ons-toolbar>
-              <div class="left">
-                <ons-back-button>Retour</ons-back-button>
-              </div>
-            </ons-toolbar>
-            <h3 class="center">Conversion volume -> stère</h3>
-            <p class="content-pad">Entrez le volume de bois (en mètre cube) puis la longueur des bûches (en centimètres), et cliquez sur <i>conversion</i> pour obtenir le volume en stère</p>
-            <div ng-form name="volumeStereForm" style="text-align: center" >
-                <br>Volume du bucher (m&sup3;) :
-                <br><input name="volumeInput" type="number" step="0.01" min="0.01" max="99" class="text-input" ng-model="volume" required />
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.volumeInput.$error.required"><br>Indiquez le volume</span>
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.volumeInput.$error.number"><br>Le volume doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.volumeInput.$error.min"><br>Le volume doit être superieur à 0</span>
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.volumeInput.$error.max"><br>Le volume doit être inferieur à 100 metres</span>
-                <br><br>Longueur des buches (cm) :
-                <br><input name="longBucheInput" type="number" step="1" min="20" max="100" class="text-input" ng-model="longbuche" required />
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.longBucheInput.$error.required"><br>Indiquez la longueur des bûches</span>
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.longBucheInput.$error.number"><br>La longueur des bûches doit être un chiffre</span>
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.longBucheInput.$error.min"><br>La longueur des bûches doit être de 20 cm au minimum</span>
-                <span class="input-error" ng-show="showValidationMessages && volumeStereForm.longBucheInput.$error.max"><br>La longueur des bûches doit être de 1 metres au maximum</span>
-                <br><br>
-                <button class="button" ng-click='getStere()' ng-disabled="longtas.$dirty || longtas.$invalid">conversion</button>
-                <p ng-show="stere != ''">Volume de bois : {{stere}} st en bûches de {{longbucheCtrl}}cm ({{volumeCtrl}}m&sup3;)</p>
-            </div>
-          </ons-page>
-        </ons-template>
-        <ons-template id="aide">
-          <ons-page ng-controller="AideCtrl">
-            <ons-toolbar>
-              <div class="left">
-                <ons-back-button>Retour</ons-back-button>
-              </div>
-            </ons-toolbar>
+    <script id="templates/result.html" type="text/ng-template"> 
+      <ion-view view-title="Résultat" hide-tabs='true'>
+        <ion-content class="result">
+          Longueur des buches :  {{longueurBuche}}cm
+          <br>Volume de bois en m&sup3; : {{m3}}m&sup3;
+          <br>Volume de bois en stère : {{stere}}st
+        </ion-content>
+        </ion-view>
+    </script>   
 
-            <div class="content-pad">
-                <p>
-                    Le stère (du grec stereos, solide) est une unité de mesure de volume, valant 1 mètre cube, utilisée pour mesurer les volumes de stockage de bois de chauffage ou de charpente. Le stère peut avoir moins d'un mètre cube de matière, en fonction de l'espace existant entre les pièces de bois.
-                </p>
+    <script id="templates/help.html" type="text/ng-template">
+      <ion-view view-title="Aide">
+        <ion-nav-buttons side="primary"><a class="button back-button buttons button-icon ion-arrow-left-c header-item" href="#/tab/home">&nbspAccueil</a></ion-nav-buttons>
+        <ion-content class="center">
+            <div>
+                <p>Le stère (du grec stereos, solide) est une unité de mesure de volume, valant 1 mètre cube, utilisée pour mesurer les volumes de stockage de bois de chauffage ou de charpente. Le stère peut avoir moins d'un mètre cube de matière, en fonction de l'espace existant entre les pièces de bois.</p>
                 <div>
-                    <img width="220" height="189" src="img/bucher.jpg" alt="" class="img-pad">
-                <div>
-                    1 mètre cube apparent de buches de 1m
+                    <img width="220" height="189" src="img/tas_de_bois.jpg" alt="" class="img-pad">
+                  <div>1 mètre cube apparent de buches de 1m</div>
                 </div>
-                </div>
-                <p>
-                    En France, le stère n'est plus officiellement utilisé comme unité légale : « L'emploi du stère devra cesser avant le 31 décembre 1977 », mais il est encore fréquemment utilisé pour le commerce du bois (de chauffage et d'industrie). Seul le mètre cube demeure l'unité officielle en France.
-                </p>
-                <p>
-                    D'après l'ADEME, le stère (symbole st) équivaut à un mètre cube apparent dans le cas de bûches d'un mètre de long : soit un empilement de rondins ou de quartiers de bois d'un mètre de long dans un châssis délimitant un cube d'un mètre de côté. L'organisme évoque le fait que, si le bois est recoupé en tronçons plus courts, il est plus facile de réduire les vides entre bûches. Le volume apparent sera alors plus faible. La norme NF sur le bois de chauffage spécifie que l'étiquetage doit indiquer une quantité en mètres cubes mais fournit une correspondance normalisée entre le stère et le volume apparent (par exemple le stère de bois coupé en rondins de 33 cm a un volume apparent de 0,7 m3).
-                </p>
-
-
+                <p>En France, le stère n'est plus officiellement utilisé comme unité légale : « L'emploi du stère devra cesser avant le 31 décembre 1977 », mais il est encore fréquemment utilisé pour le commerce du bois (de chauffage et d'industrie). Seul le mètre cube demeure l'unité officielle en France.</p>
+                <p>D'après l'ADEME, le stère (symbole st) équivaut à un mètre cube apparent dans le cas de bûches d'un mètre de long : soit un empilement de rondins ou de quartiers de bois d'un mètre de long dans un châssis délimitant un cube d'un mètre de côté. L'organisme évoque le fait que, si le bois est recoupé en tronçons plus courts, il est plus facile de réduire les vides entre bûches. Le volume apparent sera alors plus faible. La norme NF sur le bois de chauffage spécifie que l'étiquetage doit indiquer une quantité en mètres cubes mais fournit une correspondance normalisée entre le stère et le volume apparent (par exemple le stère de bois coupé en rondins de 33 cm a un volume apparent de 0,7 m3).</p>
                 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr" onClick="openExternal(this.href)">Contenu soumis à la licence CC-BY-SA</a>. 
                 <br><p>Source : Article <em><a href="http://fr.wikipedia.org/wiki/St%C3%A8re" onClick="openExternal(this.href)">Stère</a></em> de <a href="http://fr.wikipedia.org/" onClick="openExternal(this.href)">Wikipédia en français</a>(<a href="http://fr.wikipedia.org/w/index.php?title=St%C3%A8re&action=history" onClick="openExternal(this.href)">auteurs</a>)</p>
             </div>
+        </ion-content>
+      </ion-view>
+    </script>
+  
+    <script id="templates/about.html" type="text/ng-template">
+      <ion-view view-title="A propos">
+      <ion-nav-buttons side="primary"><a class="button back-button buttons button-icon ion-arrow-left-c header-item" href="#/tab/home">&nbspAccueil</a></ion-nav-buttons>
+        <ion-content class="center">
+          <p>Cette application vous permet de convertir un volume de bois de mètre cube vers stère, et inverssement.</p>
+          <p>Si vous n'avez pas calculé votre volume en mètre cube, mesurez votre tas de bois et entrez ses dimensions (Longueur, largeur, hauteur) dans l'application, la conversion se fera automatiquement.</p>
+          <p>V1.1.0 - <a href="http://barnsonic.com" onClick="openExternal(this.href)">http://barnsonic.com</a></p>
+        </ion-content>
+      </ion-view>
+    </script>
 
-          </ons-page>
-        </ons-template>
-        <ons-template id="aPropos">
-          <ons-page ng-controller="AProposCtrl">
-            <ons-toolbar>
-              <div class="left">
-                <ons-back-button>Retour</ons-back-button>
-              </div>
-            </ons-toolbar>
-            <div class="content-pad">
-                <p>
-                Cette application vous permet de convertir un volume de bois de mètre cube vers stère, et inverssement.
-                </p>
-                <p>
-                Si vous n'avez pas calculé votre volume en mètre cube, mesurez votre buchez et entrez ses dimensions dans l'application (longueur, largeur, hauteur), la conversion se fera automatiquement.
-                </p>
-                <p>
-                    V1.0.1 - <a href="http://barnsonic.com" onClick="openExternal(this.href)">http://barnsonic.com</a>
-                </p>
-            </div>
-          </ons-page>
-        </ons-template>
-
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/angular.js"></script>
-        <script type="text/javascript" src="js/onsenui.min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+  </body>
 </html>
+

@@ -1,0 +1,40 @@
+h1{
+    text-align:center;
+    font-size: 30px;
+    color: #444444;
+}
+h3{
+    text-align:center;
+    font-size: 20px;
+    color: #444444;
+}
+
+.center{
+    position:absolute;
+    width: 90%;
+    left: 0;
+    right: 0;
+    text-align:center;
+    margin: 30px auto 30px auto;
+    padding: 0px 20px 0px 20px;
+}
+
+.result {
+    text-align:center;
+    margin: 30px auto 30px auto;
+    font-size: 20px;
+    line-height: 200%;
+    color: #444444;
+}
+
+.error {
+    border:2px solid #fe3a3d  !important;
+    border-radius:7px;
+    border-color:#fe3a3d;
+    box-shadow:0 0 10px #fe3a3d;
+}
+
+.error-msg {
+    color: #fe3a3d;
+    margin: 5px 0px 15px 0px;
+}
