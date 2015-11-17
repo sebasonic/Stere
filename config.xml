@@ -20,8 +20,9 @@
   <preference name="permissions" value="none"/>
 
   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" />
-  
+  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" version="0.6.0" />
+  <gap:plugin name="org.apache.cordova.splashscreen" />
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
